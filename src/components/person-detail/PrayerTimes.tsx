@@ -20,7 +20,8 @@ const PrayerTimes = () => {
           <iframe
             src="https://timesprayer.com/widgets.php?frame=1&lang=ar&name=cairo&sound=true&avachang=true&fcolor=4C6EC1&tcolor=37921D"
             style={{ border: 'none', overflow: 'hidden', width: '100%', height: '187px' }}
-            title="مواقيت الصلاة - القاهرة" />
+            title="مواقيت الصلاة - القاهرة"
+            referrerPolicy="no-referrer" />
 
         </CardContent>
       </Card>

@@ -65,7 +65,8 @@ const HadithSearch = () => {
           <iframe
             src={searchUrl}
             className="w-full h-full rounded-lg border"
-            title="نتائج البحث عن الحديث" />
+            title="نتائج البحث عن الحديث"
+            referrerPolicy="no-referrer" />
 
         </DialogContent>
       </Dialog>

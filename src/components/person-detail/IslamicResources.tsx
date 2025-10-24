@@ -23,7 +23,8 @@ const IslamicResources = () => {
                 src="https://sadkoon.gitlab.io/hisn"
                 className="w-full h-full border-0"
                 title="حصن المسلم"
-                loading="eager" />
+                loading="eager"
+                referrerPolicy="no-referrer" />
 
             </div>
           </CardContent>
@@ -48,7 +49,8 @@ const IslamicResources = () => {
                 src="https://tafsir.app/"
                 className="w-full h-full border-0"
                 title="المقرئ"
-                loading="lazy" />
+                loading="lazy"
+                referrerPolicy="no-referrer" />
 
             </div>
           </CardContent>
@@ -75,7 +77,8 @@ const IslamicResources = () => {
                 className="w-full h-full border-0"
                 style={{ borderRadius: "5%" }}
                 title="التفسير الميسر"
-                loading="lazy" />
+                loading="lazy"
+                referrerPolicy="no-referrer" />
 
             </div>
           </CardContent>
