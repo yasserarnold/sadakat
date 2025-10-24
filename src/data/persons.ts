@@ -10,7 +10,7 @@ export const persons: Person[] = [
 {
   id: "khaled-ibrahim",
   name: "خالد ابراهيم شقا",
-  image: "/images/khakhalledd.png",
+  image: "/images/khalledd.png",
   fallback: "أ",
   prayerAudio: "/audio/doaa.mp3"
 },
