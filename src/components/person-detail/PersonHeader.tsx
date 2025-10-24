@@ -29,7 +29,7 @@ const PersonHeader = ({ person }: PersonHeaderProps) => {
     <motion.div
       initial={{ opacity: 0, y: -30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}>
+      transition={{ duration: 0.6, delay: 0 }}>
 
       <Card className="border-slate-200 shadow-lg" style={{ background: "rgba(255, 255, 255, 0.95)" }}>
         <CardContent className="p-6 sm:p-8">

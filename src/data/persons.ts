@@ -50,19 +50,6 @@ prayerAudio: "/audio/doaa.mp3"
 prayerAudio: "/audio/doaa.mp3"
 },
 {
-  id: "saed-abdelazeem",
-  name: "الشيخ/ سعيد عبد العظيم",
-  image: "https://newoaks.s3.us-west-1.amazonaws.com/AutoDev/77020/3db4255c-464e-451f-a702-f7d8eb7fb1a5.png",
-  fallback: "س"
-},
-
-	{
-  id: "hasan-abdelazeem",
-  name: "الشيخ/ حسن عبد العظيم",
-  image: "https://newoaks.s3.us-west-1.amazonaws.com/AutoDev/77020/3db4255c-464e-451f-a702-f7d8eb7fb1a5.png",
-  fallback: "س"
-},
-{
   id: "mahmoud-khalil-alhussary",
   name: "الشيخ/ محمود خليل الحصري",
   image: "https://newoaks.s3.us-west-1.amazonaws.com/NewOaks/5500/9bbfa26c-6270-40c4-a1ae-3ad8aca63d66.jpeg",

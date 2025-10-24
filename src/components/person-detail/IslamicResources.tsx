@@ -9,7 +9,7 @@ const IslamicResources = () => {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}>
+        transition={{ duration: 0.6, delay: 0.4 }}>
         <Card className="border-amber-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
           <CardHeader className="bg-gradient-to-r from-amber-50 via-amber-100 to-orange-50 border-b rounded-t-lg">
             <CardTitle className="flex items-center gap-3 text-xl sm:text-2xl text-slate-800">
@@ -34,7 +34,7 @@ const IslamicResources = () => {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.3 }}>
+        transition={{ duration: 0.6, delay: 0.5 }}>
         <Card className="border-blue-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
           <CardHeader className="bg-gradient-to-r from-blue-50 via-blue-100 to-cyan-50 border-b rounded-t-lg">
             <CardTitle className="flex items-center gap-3 text-xl sm:text-2xl text-slate-800">
@@ -59,7 +59,7 @@ const IslamicResources = () => {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.4 }}>
+        transition={{ duration: 0.6, delay: 0.6 }}>
         <Card className="border-green-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
           <CardHeader className="bg-gradient-to-r from-green-50 via-green-100 to-emerald-50 border-b rounded-t-lg">
             <CardTitle className="flex items-center gap-3 text-xl sm:text-2xl text-slate-800">

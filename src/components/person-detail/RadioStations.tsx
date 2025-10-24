@@ -87,7 +87,7 @@ const RadioStations = () => {
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.2 }}>
+      transition={{ duration: 0.6, delay: 0.3 }}>
 
       <Card className="border-slate-200 shadow-lg" style={{ background: "rgba(255, 255, 255, 0.85)" }}>
         <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50 border-b rounded-t-lg">

@@ -7,7 +7,7 @@ const PrayerTimes = () => {
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.5 }}>
+      transition={{ duration: 0.6, delay: 0.8 }}>
 
       <Card className="border-slate-200 shadow-lg" style={{ background: "rgba(255, 255, 255, 0.85)" }}>
         <CardHeader className="bg-gradient-to-r from-indigo-50 to-blue-50 border-b rounded-t-lg">
