@@ -29,22 +29,25 @@ prayerAudio: "/audio/doaa.mp3"
 prayerAudio: "/audio/doaa.mp3"
 },
 {
-  id: "ferdaws",
-  name: "الحاجة/ فردوس الشيخ الطيب",
+  id: "mohamed-shaqa",
+  name: "محمد شقا",
   image: "https://newoaks.s3.us-west-1.amazonaws.com/AutoDev/77020/3db4255c-464e-451f-a702-f7d8eb7fb1a5.png",
-  fallback: "ف"
+  fallback: "ف",
+prayerAudio: "/audio/doaa.mp3"
 },
 {
-  id: "hasan-abdelmoneim",
-  name: "الحسن عبد المنعم رجب",
+  id: "aly-shaqa",
+  name: "علي شقا",
   image: "https://newoaks.s3.us-west-1.amazonaws.com/AutoDev/77020/3db4255c-464e-451f-a702-f7d8eb7fb1a5.png",
-  fallback: "ح"
+  fallback: "ح",
+prayerAudio: "/audio/doaa.mp3"
 },
 {
-  id: "ismail-haniyeh",
-  name: "الشهيد بإذن الله/ إسماعيل هنية",
+  id: "ahmed-shaqa",
+  name: "احمد شقا",
   image: "https://newoaks.s3.us-west-1.amazonaws.com/AutoDev/77020/3db4255c-464e-451f-a702-f7d8eb7fb1a5.png",
-  fallback: "إ"
+  fallback: "إ",
+prayerAudio: "/audio/doaa.mp3"
 },
 {
   id: "saed-abdelazeem",
