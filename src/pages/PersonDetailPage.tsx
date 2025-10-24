@@ -10,11 +10,17 @@ import HadithSearch from "@/components/person-detail/HadithSearch";
 import PrayerTimes from "@/components/person-detail/PrayerTimes";
 import TasbihCounter from "@/components/person-detail/TasbihCounter";
 import { getPersonById } from "@/data/persons";
+import { useEffect } from "react";
 
 const PersonDetailPage = () => {
   const { personId } = useParams<{personId: string;}>();
   const whatsappNumber = "YOUR_WHATSAPP_NUMBER";
   const whatsappMessage = "أريد صفحة تذكارية";
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // Get person data by ID
   const person = personId ? getPersonById(personId) : undefined;
@@ -47,7 +53,7 @@ const PersonDetailPage = () => {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}>
 
-              صدقة جارية
+              صدقة جارية لعائلة شقا
             </motion.h1>
             
             <div className="w-[100px]" /> {/* Spacer for centering */}
