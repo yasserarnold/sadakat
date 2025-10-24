@@ -22,10 +22,11 @@ export const persons: Person[] = [
 prayerAudio: "/audio/doaa.mp3"
 },
 {
-  id: "mohammed-mamdouh",
-  name: "الحاج/ محمد ممدوح مصطفي أمين صالح عرفة",
+  id: "khadr-zaky",
+  name: "خضر زكي شقا",
   image: "https://newoaks.s3.us-west-1.amazonaws.com/AutoDev/77020/3db4255c-464e-451f-a702-f7d8eb7fb1a5.png",
-  fallback: "م"
+  fallback: "خ",
+prayerAudio: "/audio/doaa.mp3"
 },
 {
   id: "ferdaws",
