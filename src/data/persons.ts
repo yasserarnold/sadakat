@@ -16,9 +16,10 @@ export const persons: Person[] = [
 },
 {
   id: "abdelhadi-ashiri",
-  name: "الحاج/ عبد الهادي عشيرى محمد",
+  name: "زكي ابراهيم شقا",
   image: "https://newoaks.s3.us-west-1.amazonaws.com/AutoDev/77020/3db4255c-464e-451f-a702-f7d8eb7fb1a5.png",
-  fallback: "ع"
+  fallback: "زكي",
+prayerAudio: "/audio/doaa.mp3"
 },
 {
   id: "mohammed-mamdouh",
