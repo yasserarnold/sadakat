@@ -15,7 +15,7 @@ export const persons: Person[] = [
   prayerAudio: "/audio/doaa.mp3"
 },
 {
-  id: "abdelhadi-ashiri",
+  id: "zaky-shaqa",
   name: "زكي ابراهيم شقا",
   image: "https://newoaks.s3.us-west-1.amazonaws.com/AutoDev/77020/3db4255c-464e-451f-a702-f7d8eb7fb1a5.png",
   fallback: "زكي",
