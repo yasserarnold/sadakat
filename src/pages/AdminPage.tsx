@@ -1,68 +1,96 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Label } from '@/components/ui/label';
-import { Lock, LogOut } from 'lucide-react';
-import { personStorage } from '@/lib/personStorage';
-import { getAllPersons, Person } from '@/data/persons';
+import { LogOut } from 'lucide-react';
+import { getAllPersons, Person, addPerson, updatePerson, deletePerson } from '@/lib/persons';
 import PersonForm from '@/components/admin/PersonForm';
 import PersonList from '@/components/admin/PersonList';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
+import { Session } from '@supabase/supabase-js';
+import AuthForm from '@/components/admin/AuthForm';
+import BackToTopButton from '@/components/BackToTopButton';
 
 const AdminPage = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [password, setPassword] = useState('');
+  const [session, setSession] = useState<Session | null>(null);
   const [allPersons, setAllPersons] = useState<Person[]>([]);
   const [editingPerson, setEditingPerson] = useState<Person | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const [checkingRole, setCheckingRole] = useState(true);
   const { toast } = useToast();
 
   useEffect(() => {
-    setIsAuthenticated(personStorage.isAuthenticated());
-    if (personStorage.isAuthenticated()) {
-      loadPersons();
-    }
+    // Check for existing session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setLoading(false);
+    });
+
+    // Listen for auth changes
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
-  const loadPersons = () => {
-    setAllPersons(getAllPersons());
-  };
-
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (personStorage.authenticate(password)) {
-      setIsAuthenticated(true);
+  useEffect(() => {
+    if (session) {
+      checkAdminRole();
       loadPersons();
-      toast({
-        title: 'تم تسجيل الدخول بنجاح',
-        description: 'مرحباً بك في لوحة التحكم'
-      });
     } else {
-      toast({
-        title: 'خطأ في كلمة المرور',
-        description: 'يرجى التحقق من كلمة المرور والمحاولة مرة أخرى',
-        variant: 'destructive'
-      });
+      setCheckingRole(false);
+      setIsAdmin(false);
     }
-    setPassword('');
+  }, [session]);
+
+  const checkAdminRole = async () => {
+    setCheckingRole(true);
+    try {
+      const { data, error } = await supabase
+        .from('user_roles')
+        .select('role')
+        .eq('user_id', session?.user?.id)
+        .eq('role', 'admin')
+        .maybeSingle();
+
+      if (error) {
+        console.error('Error checking admin role:', error);
+        setIsAdmin(false);
+      } else {
+        setIsAdmin(!!data);
+      }
+    } catch (error) {
+      console.error('Error checking admin role:', error);
+      setIsAdmin(false);
+    } finally {
+      setCheckingRole(false);
+    }
   };
 
-  const handleLogout = () => {
-    personStorage.logout();
-    setIsAuthenticated(false);
+  const loadPersons = async () => {
+    const data = await getAllPersons();
+    setAllPersons(data);
+  };
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
     toast({
       title: 'تم تسجيل الخروج',
       description: 'نراك قريباً'
     });
   };
 
-  const handleAddPerson = (person: Omit<Person, 'id'>) => {
+  const handleAddPerson = async (personData: Omit<Person, 'id' | 'created_at' | 'updated_at'>) => {
     try {
-      personStorage.addPerson(person);
-      loadPersons();
+      await addPerson(personData);
+      await loadPersons();
       toast({
         title: 'تم إضافة الشخص بنجاح',
-        description: `تم إضافة ${person.name}`
+        description: `تم إضافة ${personData.name}`
       });
     } catch (error) {
       toast({
@@ -73,16 +101,16 @@ const AdminPage = () => {
     }
   };
 
-  const handleUpdatePerson = (person: Omit<Person, 'id'>) => {
+  const handleUpdatePerson = async (personData: Omit<Person, 'id' | 'created_at' | 'updated_at'>) => {
     if (!editingPerson) return;
 
     try {
-      personStorage.updatePerson(editingPerson.id, person);
-      loadPersons();
+      await updatePerson(editingPerson.id, personData);
+      await loadPersons();
       setEditingPerson(null);
       toast({
         title: 'تم تحديث الشخص بنجاح',
-        description: `تم تحديث ${person.name}`
+        description: `تم تحديث ${personData.name}`
       });
     } catch (error) {
       toast({
@@ -93,10 +121,10 @@ const AdminPage = () => {
     }
   };
 
-  const handleDeletePerson = (id: string) => {
+  const handleDeletePerson = async (id: string) => {
     try {
-      personStorage.deletePerson(id);
-      loadPersons();
+      await deletePerson(id);
+      await loadPersons();
       toast({
         title: 'تم حذف الشخص',
         description: 'تم حذف الشخص بنجاح'
@@ -110,43 +138,30 @@ const AdminPage = () => {
     }
   };
 
-  const customPersonIds = new Set(personStorage.getCustomPersons().map((p) => p.id));
-
-  if (!isAuthenticated) {
+  if (loading || checkingRole) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 flex items-center justify-center p-4" dir="rtl">
-        <Card className="w-full max-w-md">
-          <CardHeader className="text-center">
-            <div className="mx-auto w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-              <Lock className="h-6 w-6 text-blue-600" />
-            </div>
-            <CardTitle className="text-2xl">لوحة تحكم المدير</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleLogin} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="password">كلمة المرور</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="أدخل كلمة المرور"
-                  required
-                  dir="rtl" />
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 flex items-center justify-center">
+        <p className="text-xl text-slate-600">جاري التحميل...</p>
+      </div>
+    );
+  }
 
-                <p className="text-sm text-slate-500">
-                  كلمة المرور الافتراضية: admin123
-                </p>
-              </div>
-              <Button type="submit" className="w-full">
-                تسجيل الدخول
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
-      </div>);
+  if (!session) {
+    return <AuthForm />;
+  }
 
+  if (!isAdmin) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <p className="text-xl text-slate-600">غير مصرح لك بالوصول إلى هذه الصفحة</p>
+          <p className="text-sm text-slate-500">يجب أن تكون مسؤولاً للوصول إلى لوحة التحكم</p>
+          <Button onClick={() => window.location.href = '/'}>
+            العودة إلى الصفحة الرئيسية
+          </Button>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -166,23 +181,23 @@ const AdminPage = () => {
       </header>
 
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="max-w-6xl mx-auto space-y-8 pb-8">
+        <div className="max-w-6xl mx-auto space-y-8">
           <PersonForm
             person={editingPerson || undefined}
             onSubmit={editingPerson ? handleUpdatePerson : handleAddPerson}
-            onCancel={editingPerson ? () => setEditingPerson(null) : undefined} />
-
+            onCancel={editingPerson ? () => setEditingPerson(null) : undefined}
+          />
 
           <PersonList
             persons={allPersons}
-            customPersonIds={customPersonIds}
             onEdit={setEditingPerson}
-            onDelete={handleDeletePerson} />
-
+            onDelete={handleDeletePerson}
+          />
         </div>
       </main>
-    </div>);
-
+      <BackToTopButton />
+    </div>
+  );
 };
 
 export default AdminPage;

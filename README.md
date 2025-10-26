@@ -1,89 +1,73 @@
-# Welcome to your EzSite project
+# Welcome to your Lovable project
 
-A clean, modern React template with TypeScript, Vite, TailwindCSS, and ShadCN UI components. This template provides a solid foundation for building web applications with best practices in mind.
+## Project info
 
-## Tech Features
+**URL**: https://lovable.dev/projects/bdca84d7-a700-4a3b-b0bf-9033840d7bf7
 
-- ⚡️ **Vite** - Lightning fast build tool
-- 🔥 **React 18** - Latest React features
-- 🧩 **TypeScript** - Type safety for better developer experience
-- 🎨 **TailwindCSS** - Utility-first CSS framework
-- 🧰 **ShadCN UI** - Accessible and customizable UI components
-- 📱 **Responsive Design** - Mobile-first approach
-- 🧭 **React Router** - Easy client-side routing
-- 🔄 **React Query** - Data fetching and state management
-- 🧪 **Form Handling** - React Hook Form with Zod validation
+## How can I edit this code?
 
-## Getting Started
+There are several ways of editing your application.
 
-### Prerequisites
+**Use Lovable**
 
-- Node.js 18+ 
-- npm or yarn or pnpm
+Simply visit the [Lovable Project](https://lovable.dev/projects/bdca84d7-a700-4a3b-b0bf-9033840d7bf7) and start prompting.
 
-### Installation
+Changes made via Lovable will be committed automatically to this repo.
 
-1. Clone this repository:
-```bash
-git clone https://github.com/your-username/react-template-project.git
-cd react-template-project
-```
+**Use your preferred IDE**
 
-2. Install dependencies:
-```bash
-npm install
-# or
-yarn
-# or
-pnpm install
-```
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
-3. Start the development server:
-```bash
+The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+
+Follow these steps:
+
+```sh
+# Step 1: Clone the repository using the project's Git URL.
+git clone <YOUR_GIT_URL>
+
+# Step 2: Navigate to the project directory.
+cd <YOUR_PROJECT_NAME>
+
+# Step 3: Install the necessary dependencies.
+npm i
+
+# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-4. Open your browser and visit `http://localhost:5173`
+**Edit a file directly in GitHub**
 
-## Project Structure
+- Navigate to the desired file(s).
+- Click the "Edit" button (pencil icon) at the top right of the file view.
+- Make your changes and commit the changes.
 
-```
-react-template-project/
-├── public/              # Static assets
-│   ├── components/      # Reusable components
-│   │   └── ui/          # UI components from ShadCN
-│   ├── hooks/           # Custom React hooks
-│   ├── lib/             # Utility functions and libraries
-│   ├── pages/           # Page components
-│   ├── App.tsx          # Main application component
-│   ├── index.css        # Global styles
-│   └── main.tsx         # Application entry point
-├── .gitignore
-├── package.json         # Project dependencies and scripts
-├── tailwind.config.ts   # TailwindCSS configuration
-├── tsconfig.json        # TypeScript configuration
-└── vite.config.ts       # Vite configuration
-```
+**Use GitHub Codespaces**
 
-## Customization
+- Navigate to the main page of your repository.
+- Click on the "Code" button (green button) near the top right.
+- Select the "Codespaces" tab.
+- Click on "New codespace" to launch a new Codespace environment.
+- Edit files directly within the Codespace and commit and push your changes once you're done.
 
-- **Styling**: Modify `tailwind.config.ts` to customize your design tokens
-- **Components**: Add or modify components in the `src/components` directory
-- **Pages**: Create new pages in the `src/pages` directory
-- **Routing**: Update routes in `src/App.tsx`
+## What technologies are used for this project?
 
-## Building for Production
+This project is built with:
 
-```bash
-npm run build
-# or
-yarn build
-# or
-pnpm build
-```
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
 
-The built files will be in the `dist` directory, ready to be deployed.
+## How can I deploy this project?
+
+Simply open [Lovable](https://lovable.dev/projects/bdca84d7-a700-4a3b-b0bf-9033840d7bf7) and click on Share -> Publish.
+
+## Can I connect a custom domain to my Lovable project?
+
+Yes, you can!
+
+To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+
+Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
